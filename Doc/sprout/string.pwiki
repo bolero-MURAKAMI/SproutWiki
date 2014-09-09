@@ -1,0 +1,234 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+固定長バッファの文字列クラスを提供する。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+}}
+
+-宣言~
+#geshi(cpp){{
+ namespace sprout {
+   template<typename T, std::size_t N, typename Traits = sprout::char_traits<T> >
+   class basic_string;
+ }
+}}
+
+
+
+*Example [#examples-]
+
+-基本的な用法~
+--[[オブジェクトの生成>Doc/sprout/string/example/オブジェクトの生成]] - string オブジェクトの生成方法 &color(red,white){ ← new!};~
+--[[文字列の連結>Doc/sprout/string/example/文字列の連結]] - 文字列の連結方法と挙動 &color(red,white){ ← new!};~
+--[[異なる最大長の文字列へ変換>Doc/sprout/string/example/異なる最大長の文字列へ変換]] - 異なる最大長の文字列へ変換する方法 &color(red,white){ ← new!};~
+
+
+
+*メンバ関数 [#member-functions-]
+
+--構築/代入~
+|LEFT:200|LEFT:1800|c
+| [[basic_string>Doc/sprout/string/-basic_string]] | コンストラクタ |
+| [[operator=>Doc/sprout/string/-operator-assign]] | 別の string を文字列に代入する |
+
+--イテレータ~
+|LEFT:200|LEFT:1800|c
+| [[begin>Doc/sprout/string/-begin]] | 先頭要素を指すイテレータを返す |
+| [[end>Doc/sprout/string/-end]] | 末尾の1つ次の要素を指すイテレータを返す |
+| [[cbegin>Doc/sprout/string/-cbegin]] | 先頭要素を指す読み取り専用イテレータを返す |
+| [[cend>Doc/sprout/string/-cend]] | 末尾の次の要素を指す読み取り専用イテレータを返す |
+| [[rbegin>Doc/sprout/string/-rbegin]] | 末尾の要素を指す逆イテレータを返す |
+| [[rend>Doc/sprout/string/-rend]] | 先頭の1つ前の要素を指す逆イテレータを返す |
+| [[crbegin>Doc/sprout/string/-crbegin]] | 末尾の要素を指す読み取り専用逆イテレータを返す |
+| [[crend>Doc/sprout/string/-crend]] | 先頭の1つ前の要素を指す読み取り専用逆イテレータを返す |
+
+--領域~
+|LEFT:200|LEFT:1800|c
+| [[empty>Doc/sprout/string/-empty]] | 文字列が空かどうかを返す |
+| [[size>Doc/sprout/string/-size]] | 文字列の長さを返す |
+| [[max_size>Doc/sprout/string/max_size]] | 文字列の最大長を返す |
+| [[resize>Doc/sprout/string/resize]] | 文字列の長さを変える |
+| [[clear>Doc/sprout/string/clear]] | 文字列をクリアする |
+
+--要素アクセス~
+|LEFT:200|LEFT:1800|c
+| [[at>Doc/sprout/string/at]] | 境界チェック付きの要素アクセス |
+| [[operator[]>Doc/sprout/string/-operator-subscript]] | 境界チェック無しの要素アクセス |
+| [[front>Doc/sprout/string/-front]] | 先頭要素への参照を返す |
+| [[back>Doc/sprout/string/-back]] | 末尾要素への参照を返す |
+
+--変更~
+|LEFT:200|LEFT:1800|c
+| [[assign>Doc/sprout/string/-assign]] | 他の文字列や文字で埋める |
+| [[swap>Doc/sprout/string/-swap]] | 別の string と文字列の中身を交換する |
+
+--文字列操作~
+|LEFT:200|LEFT:1800|c
+| [[c_str>Doc/sprout/string/-c_str]] | C文字列を得る |
+| [[data>Doc/sprout/string/-data]] | C文字列を得る |
+| [[find>Doc/sprout/string/-find]] | 指定した文字列が含まれる位置を先頭から検索 |
+| [[rfind>Doc/sprout/string/-rfind]] | 指定した文字列が含まれる位置を末尾から検索 |
+| [[find_first_of>Doc/sprout/string/-find_first_of]] | 指定した文字のいずれかが含まれる位置を先頭から検索 |
+| [[find_last_of>Doc/sprout/string/-find_last_of]] | 指定した文字のいずれかが含まれる位置を末尾から検索 |
+| [[find_first_not_of>Doc/sprout/string/-find_first_not_of]] | 指定した文字のいずれも含まれない位置を先頭から検索 |
+| [[find_last_not_of>Doc/sprout/string/-find_last_not_of]] | 指定した文字のいずれも含まれない位置を末尾から検索 |
+| [[substr>Doc/sprout/string/-substr]] | 文字列の一部を取得する  |
+| [[compare>Doc/sprout/string/-compare]] | 文字列同士を比較する  |
+
+--その他~
+|LEFT:200|LEFT:1800|c
+| [[c_array>Doc/sprout/array/-c_array]] | C文字列を得る |
+
+--生成~
+|LEFT:200|LEFT:1800|c
+| [[from_c_str>Doc/sprout/string/-from_c_str]] | C文字列から string オブジェクトを生成する |
+
+
+
+*フリー関数 [#free-functions-]
+
+--生成~
+|LEFT:200|LEFT:1800|c
+| [[to_string>Doc/sprout/string/to_string]] | 文字列リテラルから string オブジェクトを生成する &color(gray){(function template)}; |
+| [[string_from_c_str>Doc/sprout/string/-string_from_c_str]] | C文字列から string オブジェクトを生成する |
+| [[make_string>Doc/sprout/string/make_string]] | 引数列から string オブジェクトを生成する &color(gray){(function template)}; |
+| [[make_string_as>Doc/sprout/string/make_string_as]] | 引数列から指定した要素型の string オブジェクトを生成する &color(gray){(function template)}; |
+
+--スワップ~
+|LEFT:200|LEFT:1800|c
+| [[swap>Doc/sprout/string/swap]] | 2つの string オブジェクトを入れ替える &color(gray){(function template)}; |
+
+--比較~
+|LEFT:200|LEFT:1800|c
+| [[operator==>Doc/sprout/string/operator-equal_to]] | 等値比較 &color(gray){(function template)}; |
+| [[operator!=>Doc/sprout/string/operator-not_equal_to]] | 非等値比較 &color(gray){(function template)}; |
+| [[operator＜>Doc/sprout/string/operator-less]] | 左辺が右辺より小さいかの判定を行う &color(gray){(function template)}; |
+| [[operator＜=>Doc/sprout/string/operator-less_equal]] | 左辺が右辺以下かの判定を行う &color(gray){(function template)}; |
+| [[operator＞>Doc/sprout/string/operator-greater]] | 左辺が右辺より大きいかの判定を行う &color(gray){(function template)}; |
+| [[operator＞=>Doc/sprout/string/operator-greater_equal]] | 左辺が右辺以上かの判定を行う &color(gray){(function template)}; |
+
+--ストリーム入出力~
+|LEFT:200|LEFT:1800|c
+| [[operator＜＜>Doc/sprout/string/operator-left_shift(ostream)]] | ストリームに文字列を出力する &color(gray){(function template)}; |
+| [[operator＞＞>Doc/sprout/string/operator-right_shift(istream)]] | ストリームから文字列を入力する &color(gray){(function template)}; |
+
+--文字列連結~
+|LEFT:200|LEFT:1800|c
+| [[operator+>Doc/sprout/string/operator-plus]] | 文字列を連結する &color(gray){(function template)}; |
+
+--長さ変更~
+|LEFT:200|LEFT:1800|c
+| [[shrink>Doc/sprout/string/shrink]] | より小さな最大長の文字列への変換を許可する &color(gray){(function template)}; |
+| [[stretch>Doc/sprout/string/stretch]] | より大きな最大長の文字列へ変換する &color(gray){(function template)}; |
+
+--文字列への変換~
+|LEFT:200|LEFT:1800|c
+| [[int_to_string>Doc/sprout/string/int_to_string]] | 整数から任意の基数で文字列への変換 &color(gray){(function template)}; |
+| [[to_string_of>Doc/sprout/string/to_string_of-int]] | 整数から10進文字列への変換 &color(gray){(function template)}; |
+| [[to_string>Doc/sprout/string/to_string-int]] | 整数から char を要素とする10進文字列への変換 &color(gray){(function template)}; |
+| [[to_wstring>Doc/sprout/string/to_wstring-int]] | 整数から wchar_t を要素とする10進文字列への変換 &color(gray){(function template)}; |
+| [[to_u16string>Doc/sprout/string/to_u16string-int]] | 整数から char16_t を要素とする10進文字列への変換 &color(gray){(function template)}; |
+| [[to_u32string>Doc/sprout/string/to_u32string-int]] | 整数から cha32r_t を要素とする10進文字列への変換 &color(gray){(function template)}; |
+| [[float_to_string>Doc/sprout/string/float_to_string]] | 浮動小数点から文字列への変換 &color(gray){(function template)}; |
+| [[float_to_string_exp>Doc/sprout/string/float_to_string_exp]] | 浮動小数点から科学表記文字列への変換 &color(gray){(function template)}; |
+| [[to_string_of>Doc/sprout/string/to_string_of-float]] | 浮動小数点から文字列への変換 &color(gray){(function template)}; |
+| [[to_string>Doc/sprout/string/to_string-float]] | 浮動小数点から char を要素とする文字列への変換 &color(gray){(function template)}; |
+| [[to_wstring>Doc/sprout/string/to_wstring-float]] | 浮動小数点から wchar_t を要素とする文字列への変換 &color(gray){(function template)}; |
+| [[to_u16string>Doc/sprout/string/to_u16string-float]] | 浮動小数点から char16_t を要素とする文字列への変換 &color(gray){(function template)}; |
+| [[to_u32string>Doc/sprout/string/to_u32string-float]] | 浮動小数点から cha32r_t を要素とする文字列への変換 &color(gray){(function template)}; |
+
+--文字列からの変換~
+|LEFT:200|LEFT:1800|c
+| [[string_to_int>Doc/sprout/string/string_to_int]] | 文字列から任意の整数型への変換 &color(gray){(function template)}; |
+| [[stoi>Doc/sprout/string/stoi]] | 文字列から int への変換 &color(gray){(function template)}; |
+| [[stol>Doc/sprout/string/stol]] | 文字列から long への変換 &color(gray){(function template)}; |
+| [[stoul>Doc/sprout/string/stoul]] | 文字列から unsigned long への変換 &color(gray){(function template)}; |
+| [[stoll>Doc/sprout/string/stoll]] | 文字列から long long への変換 &color(gray){(function template)}; |
+| [[stoull>Doc/sprout/string/stoull]] | 文字列から unsigned long long への変換 &color(gray){(function template)}; |
+| [[stoimax>Doc/sprout/string/stoimax]] | 文字列から intmax_t への変換 &color(gray){(function template)}; |
+| [[stoumax>Doc/sprout/string/stoumax]] | 文字列から uintmax_t への変換 &color(gray){(function template)}; |
+| [[from_string>Doc/sprout/string/from_string-int]] | 文字列から任意の整数型への変換 &color(gray){(function template)}; |
+| [[string_to_float>Doc/sprout/string/string_to_float]] | 文字列から任意の浮動小数点型への変換 &color(gray){(function template)}; |
+| [[stof>Doc/sprout/string/stof]] | 文字列から float への変換 &color(gray){(function template)}; |
+| [[stod>Doc/sprout/string/stod]] | 文字列から double への変換 &color(gray){(function template)}; |
+| [[stold>Doc/sprout/string/stold]] | 文字列から long double への変換 &color(gray){(function template)}; |
+| [[from_string>Doc/sprout/string/from_string-float]] | 文字列から任意の浮動小数点型への変換 &color(gray){(function template)}; |
+
+--タプルサポート~
+|LEFT:200|LEFT:1800|c
+| [[get>Doc/sprout/string/get]] | 要素を取得する &color(gray){(function template)}; |
+
+--ハッシュサポート~
+|LEFT:200|LEFT:1800|c
+| [[hash_value>Doc/sprout/string/hash_value]] | ハッシュを計算する &color(gray){(function template)}; |
+
+
+
+*メンバ型・定数 [#member-types-]
+
+--文字列特性型~
+|LEFT:200|LEFT:1800|c
+| [[reference>Doc/sprout/string/-reference]] | 要素の参照型 T& |
+| [[const_reference>Doc/sprout/string/-reference]] | 読取り専用の要素の参照型 T const& |
+| [[iterator>Doc/sprout/string/-reference]] | ランダムアクセスイテレータ |
+| [[const_iterator>Doc/sprout/string/-reference]] | 読取り専用のランダムアクセスイテレータ |
+| [[reverse_iterator>Doc/sprout/string/-reference]] | 逆イテレータ |
+| [[const_reverse_iterator>Doc/sprout/string/-reference]] | 読み取り専用の逆イテレータ |
+| [[size_type>Doc/sprout/string/-reference]] | 符号なし整数型 size_t |
+| [[difference_type>Doc/sprout/string/-reference]] | 符号付き整数型 ptrdiff_t |
+| [[pointer>Doc/sprout/string/-reference]] | 要素のポインタ型 T* |
+| [[const_pointer>Doc/sprout/string/-reference]] | 読取り専用の要素のポインタ型 T const* |
+| [[value_type>Doc/sprout/string/-reference]] | 要素の型 T |
+| [[traits_type>Doc/sprout/string/-traits_type]] | トレイトの型 Traits |
+
+--エラー値~
+|LEFT:200|LEFT:1800|c
+| [[npos>Doc/sprout/string/-npos]] | 検索失敗を表す定数 -1 |
+
+--文字列サイズ~
+|LEFT:200|LEFT:1800|c
+| [[static_size>Doc/sprout/string/-static_size]] | 固定長文字列サイズ N |
+
+
+
+*型・定数 [#types-]
+
+--文字列エイリアス~
+|LEFT:200|LEFT:1800|c
+| [[string>Doc/sprout/string/string]] | char を要素とする文字列 |
+| [[wstring>Doc/sprout/string/wstring]] | wchar_t を要素とする文字列 |
+| [[u16string>Doc/sprout/string/u16string]] | char16_t を要素とする文字列 |
+| [[u32string>Doc/sprout/string/u32string]] | char32_t を要素とする文字列 |
+
+
+
+*メタ関数 [#meta-functions-]
+
+--型特性~
+|LEFT:200|LEFT:1800|c
+| [[string_t>Doc/sprout/string/string_t]] | 指定した最大長の char を要素とする文字列 &color(gray){(class template)}; |
+| [[wstring_t>Doc/sprout/string/wstring_t]] | 指定した最大長の wchar_t を要素とする文字列 &color(gray){(class template)}; |
+| [[u16string_t>Doc/sprout/string/u16string_t]] | 指定した最大長の char16_t を要素とする文字列 &color(gray){(class template)}; |
+| [[u32string_t>Doc/sprout/string/u32string_t]] | 指定した最大長の char32_t を要素とする文字列 &color(gray){(class template)}; |
+
+--型生成~
+|LEFT:200|LEFT:1800|c
+| [[is_basic_string>Doc/sprout/string/is_basic_string]] | 型が string であるか &color(gray){(class template)}; |
+| [[is_string_of>Doc/sprout/string/is_string_of]] | 型が指定した要素型の string であるか &color(gray){(class template)}; |
+| [[is_string>Doc/sprout/string/is_string]] | 型が char を要素とする文字列であるか &color(gray){(class template)}; |
+| [[is_wstring>Doc/sprout/string/is_wstring]] | 型が wchar_t を要素とする文字列であるか &color(gray){(class template)}; |
+| [[is_u16string>Doc/sprout/string/is_u16string]] | 型が char16_t を要素とする文字列であるか &color(gray){(class template)}; |
+| [[is_u32string>Doc/sprout/string/is_u32string]] | 型が char32_t を要素とする文字列であるか &color(gray){(class template)}; |
+
+--タプルサポート~
+|LEFT:200|LEFT:1800|c
+| [[tuple_size>Doc/sprout/string/tuple_size]] | 要素数取得 &color(gray){(class template)}; |
+| [[tuple_element>Doc/sprout/string/tuple_element]] | 要素型取得 &color(gray){(class template)}; |
+

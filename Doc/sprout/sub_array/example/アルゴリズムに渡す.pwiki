@@ -1,0 +1,58 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+sub_array オブジェクトをアルゴリズムに渡して、切り出した部分だけ処理された結果を得る。~
+
+
+
+*インデックスから範囲の切り出し
+
+#geshi(cpp){{
+ #include <sprout/sub_array.hpp>
+ #include <sprout/array.hpp>
+ #include <sprout/algorithm.hpp>
+ 
+ constexpr auto src = sprout::array<int, 10>{ { 1, 2, 3, 4, 5, 10, 6, 8, 9, 7 } };
+ constexpr auto dst = sprout::sort(sprout::sub(src, 5, 10));
+ 
+ static_assert(dst.size() == 5, "size == 5");
+ static_assert(sprout::is_sorted(dst.begin(), dst.end()), "dst is sorted");
+ 
+ static_assert(dst.get_internal().size() == 10, "internal size == 10");
+ static_assert(sprout::is_sorted(dst.get_internal().begin(), dst.get_internal().end()), "internal is sorted");
+}}
+
+インデックスを取る ''sprout::sub'' フリー関数は、指定された始端インデックスから終端インデックスまでの範囲を部分コンテナとして切り出す。~
+上記の例ではインデックス 5 からインデックス 10 まで（つまり { 10, 6, 8, 9, 7 } ）を切り出している。~
+そして、切り出された部分だけがソートされている。~
+この機能によって、コンテナを取るアルゴリズムに対して、指定した範囲のみを渡すことができる。~
+~
+なお、切り出されていない範囲全体を再度得るには、''get_internal'' メンバ関数を使う。~
+
+
+
+*イテレータから範囲の切り出し
+
+#geshi(cpp){{
+ #include <sprout/sub_array.hpp>
+ #include <sprout/array.hpp>
+ #include <sprout/algorithm.hpp>
+ 
+ constexpr auto src = sprout::array<int, 10>{ { 1, 2, 3, 4, 5, 10, 6, 8, 9, 7 } };
+ constexpr auto dst = sprout::sort(sprout::sub(src, src.begin() + 5, src.begin() + 10));
+ 
+ static_assert(dst.size() == 5, "size == 5");
+ static_assert(sprout::is_sorted(dst.begin(), dst.end()), "dst is sorted");
+ 
+ static_assert(dst.get_internal().size() == 10, "internal size == 10");
+ static_assert(sprout::is_sorted(dst.get_internal().begin(), dst.get_internal().end()), "internal is sorted");
+}}
+
+上記は、最初の例のコードを、イテレータによる sub に置き換えたものである。~
+イテレータを取る ''sprout::sub'' フリー関数は、指定された始端イテレータから終端イテレータまでの範囲を部分コンテナとして切り出す。~
+これによって、検索アルゴリズムなどの結果からコンテナの範囲を切り出すことができる。~
+

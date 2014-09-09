@@ -1,0 +1,98 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+Sprout の動作をカスタマイズする。~
+これらのマクロを定義するのは、このライブラリの''どのヘッダをインクルードするよりも以前''でなければならない。~
+
+
+
+*言語機能のワークアラウンド [#features-]
+
+-各機能~
+通常、各マクロはコンパイラに応じて自動的に定義される。~
+
+--constexpr~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_CONSTEXPR
+}}
+このマクロが定義されているとき、関数は constexpr 指定されない。~
+コンパイラが constexpr に対応していない場合、これを定義すべき。~
+通常、これはコンパイラに応じて自動的に定義される。~
+
+--noexcept~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_NOEXCEPT
+}}
+このマクロが定義されているとき、関数は noexcept 修飾されない。~
+コンパイラが noexcept に対応していない場合、これを定義すべき。~
+通常、これはコンパイラに応じて自動的に定義される。~
+
+--Template aliases
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_TEMPLATE_ALIASES
+}}
+このマクロが定義されているとき、Template aliases によるエイリアスは定義されない。~
+コンパイラが Template aliases に対応していない場合、これを定義すべき。~
+通常、これはコンパイラに応じて自動的に定義される。~
+
+--Delegating constructors~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_DELEGATING_CONSTRUCTORS
+}}
+このマクロが定義されているとき、Delegating constructors による実装は行われない。
+コンパイラが Delegating constructors に対応していない場合、これを定義すべき。
+通常、これはコンパイラに応じて自動的に定義される。
+
+-自動無効化の抑制~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_AUTO_CONFIG
+}}
+このマクロが定義されているとき、自動的な言語機能の無効化は行われない。~
+
+
+
+*実装の切り替え [#implement-]
+
+~
+-CEL - ConstExpr Library~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_USE_SSCRISK_CEL
+}}
+このマクロが定義されているとき、実装の詳細として【 [[''CEL - ConstExpr Library'':https://github.com/sscrisk/CEL---ConstExpr-Library]] 】を使用する。~
+
+-ビルトイン関数~
+
+--数学関数~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_BUILTIN_CMATH_FUNCTION
+}}
+このマクロが定義されているとき、数学関数の実装にビルトイン関数を使用しない。~
+
+--ビット処理~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_BUILTIN_BIT_OPERATION
+}}
+このマクロが定義されているとき、ビット処理の実装にビルトイン関数を使用しない。~
+
+-実装によるサポート~
+
+--効率的な配列走査のサポート~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_SUPPORT_TEMPORARY_CONTAINER_ITERATION
+}}
+このマクロが定義されているとき、アルゴリズムへのコンテナの一時オブジェクト渡しをサポートしない。~
+　　具体的な効果は、sprout::array などいくつかのコンテナのイテレータが、クラスではなくポインタとして実装されるようになる。~
+　　（デフォルトの実装では、sprout::index_iterator で実装される。これは一時オブジェクトから有効なイテレータを取得するために利用される）~
+
+--一時オブジェクト渡しのサポート~
+#geshi(cpp){{
+ #define SPROUT_CONFIG_DISABLE_SUPPORT_EFFICIENT_ARRAY_ITERATION
+}}
+このマクロが定義されているとき、効率的な配列走査をサポートしない。~
+　　具体的な効果は、sprout::container_traits が配列に対して定義するイテレータが、クラスではなくポインタとして実装されるようになる。~
+　　（デフォルトの実装では、sprout::ptr_index_iterator で実装される。これはイテレータ同士の距離を定数時間で求めるために利用される）~
+

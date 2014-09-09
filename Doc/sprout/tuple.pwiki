@@ -1,0 +1,95 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+std::tuple 互換のタプルを提供する。~
+ただし、ほとんどの非変更な操作は constexpr である。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/tuple.hpp>
+}}
+
+-宣言~
+#geshi(cpp){{
+ namespace sprout {
+   template<typename... Types>
+   class tuple;
+ }
+}}
+
+-参照~
+--[[''Boost.Tuple'':http://www.boost.org/libs/tuple/doc/tuple_users_guide.html]]~
+--[[''tuple - cpprefjp'':https://sites.google.com/site/cpprefjp/reference/tuple]]~
+--[[''n3337.pdf'':http://www.boleros.x0.com/data/n3337.pdf]] (§ 20.4 Tuples)~
+
+
+
+*Example [#examples-]
+
+-基本的な用法~
+--[[ファンクタを呼ぶ>Doc/sprout/tuple/example/ファンクタを呼ぶ]] - タプルの各要素を引数としてファンクタを呼ぶ &color(red,white){ ← new!};~
+
+
+
+*メンバ関数 [#member-functions-]
+
+--構築・代入・スワップ~
+|LEFT:200|LEFT:1800|c
+| [[tuple>Doc/sprout/tuple/-tuple]] | コンストラクタ |
+| [[operator=>Doc/sprout/tuple/-operator-assign]] | 代入演算子 |
+| [[swap>Doc/sprout/tuple/-swap]] | 異なる tuple オブジェクトと値を入れ替える |
+
+
+
+*フリー関数・定数 [#free-functions-]
+
+--生成~
+|LEFT:200|LEFT:1800|c
+| [[ignore>Doc/sprout/tuple/ignore]] | 無視する要素のプレースホルダー &color(gray){(constant variable)}; |
+| [[make_tuple>Doc/sprout/tuple/make_tuple]] | 引数のコピーからタプルを生成する &color(gray){(function template)}; |
+| [[forward_as_tuple>Doc/sprout/tuple/forward_as_tuple]] | 引数の完全な型からタプルを生成する &color(gray){(function template)}; |
+| [[tie>Doc/sprout/tuple/tie]] | 引数への参照からタプルを生成する &color(gray){(function template)}; |
+| [[tuple_cat>Doc/sprout/tuple/tuple_cat]] | 複数のタプルから 1 つのタプルを生成する &color(gray){(function template)}; |
+
+--スワップ~
+|LEFT:200|LEFT:1800|c
+| [[swap>Doc/sprout/tuple/swap]] | 無視する要素のプレースホルダー &color(gray){(function template)}; |
+
+--要素アクセス~
+|LEFT:200|LEFT:1800|c
+| [[get>Doc/sprout/tuple/get]] | 要素を取得する &color(gray){(function template)}; |
+
+--比較~
+|LEFT:200|LEFT:1800|c
+| [[operator==>Doc/sprout/tuple/operator-equal_to]] | 等値比較 &color(gray){(function template)}; |
+| [[operator!=>Doc/sprout/tuple/operator-not_equal_to]] | 非等値比較 &color(gray){(function template)}; |
+| [[operator＜>Doc/sprout/tuple/operator-less]] | 左辺が右辺より小さいかの判定を行う &color(gray){(function template)}; |
+| [[operator＜=>Doc/sprout/tuple/operator-less_equal]] | 左辺が右辺以下かの判定を行う &color(gray){(function template)}; |
+| [[operator＞>Doc/sprout/tuple/operator-greater]] | 左辺が右辺より大きいかの判定を行う &color(gray){(function template)}; |
+| [[operator＞=>Doc/sprout/tuple/operator-greater_equal]] | 左辺が右辺以上かの判定を行う &color(gray){(function template)}; |
+
+--ハッシュサポート~
+|LEFT:200|LEFT:1800|c
+| [[hash_value>Doc/sprout/tuple/hash_value]] | ハッシュを計算する &color(gray){(function template)}; |
+
+--関数オブジェクトサポート~
+|LEFT:200|LEFT:1800|c
+| [[make_fused>Doc/sprout/tuple/make_fused]] | タプルの各要素を引数としてファンクタを呼ぶ関数オブジェクトを作成する &color(gray){(function template)}; |
+
+
+
+*メタ関数 [#meta-functions-]
+
+--型特性~
+|LEFT:200|LEFT:1800|c
+| [[is_tuple>Doc/sprout/tuple/is_tuple]] | 型が tuple であるか &color(gray){(class template)}; |
+
+--タプルヘルパクラス~
+|LEFT:200|LEFT:1800|c
+| [[tuple_size>Doc/sprout/tuple/tuple_size]] | 要素数取得 &color(gray){(class template)}; |
+| [[tuple_element>Doc/sprout/tuple/tuple_element]] | 要素型取得 &color(gray){(class template)}; |
+

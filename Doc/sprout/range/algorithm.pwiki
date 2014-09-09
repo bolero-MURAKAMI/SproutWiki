@@ -1,0 +1,136 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+Rangeベースのアルゴリズムを提供する。~
+変更のアルゴリズムのインタフェースは、[[Sprout.Algotithm>Doc/sprout/algorithm]] に準ずる。~
+また、検索されたイテレータを返すアルゴリズムは、テンプレート引数の指定によって返値の挙動を変更することができる。~
+なお、[[Sprout.Algotithm>Doc/sprout/algorithm]] で入出力イテレータでなくコンテナを取る仕様になっているものは、Range 版は存在しない。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/range/algorithm.hpp>
+}}
+
+-参照~
+--[[''n3337.pdf'':http://www.boleros.x0.com/data/n3337.pdf]] (§ 25 Algorithms library)~
+
+-注記~
+--''2 つの入力イテレータを取るアルゴリズム''~
+入力イテレータの代わりに、入力の Range を受け取る。~
+#geshi(cpp){{
+ template<typename Input, typename Result>
+ inline SPROUT_CONSTEXPR typename sprout::fixed::result_of::algorithm<Result>::type
+ copy(Input const& input, Result const& result);
+}}
+
+--''検索されたイテレータを返すアルゴリズム''~
+テンプレート引数の指定によって、検索されたイテレータ、または検索されたイテレータおよび始終端のイテレータの Range を返すバージョンが存在する。~
+#geshi(cpp){{
+ template<sprout::range::range_return_value RetV, typename Range, typename T>
+ inline SPROUT_CONSTEXPR typename sprout::range::range_return<Range, RetV>::type
+ find(Range&& range, T const& value);
+}}
+
+
+
+*フリー関数 [#free-functions-]
+
+--シーケンスを変更しない操作~
+|LEFT:200|LEFT:1800|c
+| [[all_of>Doc/sprout/range/algorithm/all_of]] | 全ての要素が条件を満たしているかを調べる &color(gray){(function template)}; |
+| [[any_of>Doc/sprout/range/algorithm/any_of]] | どれかの要素が条件を満たしているかを調べる &color(gray){(function template)}; |
+| [[none_of>Doc/sprout/range/algorithm/none_of]] | 全ての要素が条件を満たしていないかを調べる &color(gray){(function template)}; |
+| [[one_of>Doc/sprout/range/algorithm/one_of]] | どれか一つだけの要素が条件を満たしているかを調べる &color(gray){(function template)}; |
+| [[find>Doc/sprout/range/algorithm/find]] | 指定された値を検索する &color(gray){(function template)}; |
+| [[find_if>Doc/sprout/range/algorithm/find_if]] | 条件を満たす最初の要素を検索する &color(gray){(function template)}; |
+| [[find_if_not>Doc/sprout/range/algorithm/find_if_not]] | 条件を満たしていない最初の要素を検索する &color(gray){(function template)}; |
+| [[find_end>Doc/sprout/range/algorithm/find_end]] | 指定された最後のサブシーケンスを検索する &color(gray){(function template)}; |
+| [[find_first_of>Doc/sprout/range/algorithm/find_first_of]] | ある集合の1つとマッチする最初の要素を検索する &color(gray){(function template)}; |
+| [[adjacent_find>Doc/sprout/range/algorithm/adjacent_find]] | 隣接する要素で条件を満たしている最初の要素を検索する &color(gray){(function template)}; |
+| [[count>Doc/sprout/range/algorithm/count]] | 指定された値である要素の数を数える &color(gray){(function template)}; |
+| [[count_if>Doc/sprout/range/algorithm/count_if]] | 条件を満たしている要素の数を数える &color(gray){(function template)}; |
+| [[mismatch>Doc/sprout/range/algorithm/mismatch]] | 2つの範囲が一致していない場所を検索する &color(gray){(function template)}; |
+| [[equal>Doc/sprout/range/algorithm/equal]] | 2つの範囲を等値比較する &color(gray){(function template)}; |
+| [[search>Doc/sprout/range/algorithm/search]] | 指定された最初のサブシーケンスを検索する &color(gray){(function template)}; |
+| [[search_n>Doc/sprout/range/algorithm/search_n]] | 指定された最初のサブシーケンスを検索する &color(gray){(function template)}; |
+| [[all_of_equal>Doc/sprout/range/algorithm/all_of_equal]] | 全ての要素が指定した値に等しいかを調べる &color(gray){(function template)}; |
+| [[any_of_equal>Doc/sprout/range/algorithm/any_o_equalf]] | どれかの要素が指定した値に等しいかを調べる &color(gray){(function template)}; |
+| [[none_of_equal>Doc/sprout/range/algorithm/none_of_equal]] | 全ての要素が指定した値に等しいかを調べる &color(gray){(function template)}; |
+| [[one_of_equal>Doc/sprout/range/algorithm/one_of_equal]] | どれか一つだけの要素が指定した値に等しいかを調べる &color(gray){(function template)}; |
+
+--シーケンスを変更する操作~
+|LEFT:200|LEFT:1800|c
+| [[copy>Doc/sprout/range/algorithm/copy]] | 指定された範囲の要素をコピーする &color(gray){(function template)}; |
+| [[copy_if>Doc/sprout/range/algorithm/copy_if]] | 条件を満たす要素のみをコピーする &color(gray){(function template)}; |
+| [[copy_backward>Doc/sprout/range/algorithm/copy_backward]] | 指定された範囲の要素を後ろからコピーする &color(gray){(function template)}; |
+| [[transform>Doc/sprout/range/algorithm/transform]] | 全ての要素に関数を適用する &color(gray){(function template)}; |
+| [[replace_copy>Doc/sprout/range/algorithm/replace_copy]] | 指定された値を一致する要素を指定された値に置き換え、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[replace_copy_if>Doc/sprout/range/algorithm/replace_copy_if]] | 条件を満たす要素を指定された値に置き換え、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[remove_copy>Doc/sprout/range/algorithm/remove_copy]] | 指定された要素を除け、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[remove_copy_if>Doc/sprout/range/algorithm/remove_copy_if]] | 条件を満たす要素を除け、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[unique_copy>Doc/sprout/range/algorithm/unique_copy]] | 重複した要素を除け、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[reverse_copy>Doc/sprout/range/algorithm/reverse_copy]] | 要素の並びを逆にし、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[rotate_copy>Doc/sprout/range/algorithm/rotate_copy]] | 要素の並びを回転させ、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[is_partitioned>Doc/sprout/range/algorithm/is_partitioned]] | 与えられた範囲がパーティションされているか判定する &color(gray){(function template)}; |
+| [[partition_copy>Doc/sprout/range/algorithm/partition_copy]] | 与えられた範囲を条件によって 2 つのグループに分け、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+| [[partition_point>Doc/sprout/range/algorithm/partition_point]] | 与えられた範囲を条件によって 2 つのグループに分け、それらの間の位置を得る &color(gray){(function template)}; |
+
+--ソートや、それに関連した操作~
+
+---ソート~
+|LEFT:200|LEFT:1800|c
+//| [[partial_sort_copy>Doc/sprout/range/algorithm/partial_sort_copy]] | 範囲を部分的にソートした結果を他の範囲にコピーする &color(gray){(function template)}; |
+| [[is_sorted>Doc/sprout/range/algorithm/is_sorted]] | ソート済みか判定する &color(gray){(function template)}; |
+| [[is_sorted_until>Doc/sprout/range/algorithm/is_sorted_until]] | ソート済みか判定し、ソートされていない位置のイテレータを取得する &color(gray){(function template)}; |
+| [[is_increasing>Doc/sprout/range/algorithm/is_increasing]] | 昇順にソート済みか判定する &color(gray){(function template)}; |
+| [[is_decreasing>Doc/sprout/range/algorithm/is_decreasing]] | 降順にソート済みか判定する &color(gray){(function template)}; |
+| [[is_strictly_increasing>Doc/sprout/range/algorithm/is_strictly_increasing]] | 厳密な昇順にソート済みか判定する &color(gray){(function template)}; |
+| [[is_strictly_decreasing>Doc/sprout/range/algorithm/is_strictly_decreasing]] | 厳密な降順にソート済みか判定する &color(gray){(function template)}; |
+
+---二分探索~
+|LEFT:200|LEFT:1800|c
+| [[lower_bound>Doc/sprout/range/algorithm/lower_bound]] | 指定された要素以上の値が現れる最初の位置のイテレータを取得する &color(gray){(function template)}; |
+| [[upper_bound>Doc/sprout/range/algorithm/upper_bound]] | 指定された要素より大きい値が現れる最初の位置のイテレータを取得する &color(gray){(function template)}; |
+| [[equal_range>Doc/sprout/range/algorithm/equal_range]] | lower_boundとupper_boundの結果を組で取得する &color(gray){(function template)}; |
+| [[binary_search>Doc/sprout/range/algorithm/binary_search]] | 二分探索法による検索を行う &color(gray){(function template)}; |
+
+---マージ~
+|LEFT:200|LEFT:1800|c
+| [[merge>Doc/sprout/range/algorithm/merge]] | 2 つのソート済み範囲をマージする &color(gray){(function template)}; |
+
+---ソート済み構造に対する集合演算~
+|LEFT:200|LEFT:1800|c
+| [[includes>Doc/sprout/range/algorithm/includes]] | 2 つのソート済み範囲において、一方の範囲の要素がもう一方の範囲に全て含まれているかを判定する &color(gray){(function template)}; |
+| [[set_union>Doc/sprout/range/algorithm/set_union]] | 2 つのソート済み範囲の和集合を得る &color(gray){(function template)}; |
+| [[set_intersection>Doc/sprout/range/algorithm/set_intersection]] | 2 つのソート済み範囲の積集合を得る &color(gray){(function template)}; |
+| [[set_difference>Doc/sprout/range/algorithm/set_difference]] | 2 つのソート済み範囲の差集合を得る &color(gray){(function template)}; |
+| [[set_symmetric_difference>Doc/sprout/range/algorithm/set_symmetric_difference]] | 2 つのソート済み範囲の互いに素な集合を得る &color(gray){(function template)}; |
+
+---ヒープ~
+|LEFT:200|LEFT:1800|c
+| [[is_heap_until>Doc/sprout/range/algorithm/is_heap_until]] | 範囲がヒープ化されているか判定し、ヒープ化されていない最初の要素を指すイテレータを取得する &color(gray){(function template)}; |
+| [[is_heap>Doc/sprout/range/algorithm/is_heap]] | 範囲がヒープ化されているか判定する &color(gray){(function template)}; |
+
+---最小と最大~
+|LEFT:200|LEFT:1800|c
+| [[min_element>Doc/sprout/range/algorithm/min_element]] | 範囲内の最小要素へのイテレータを取得する &color(gray){(function template)}; |
+| [[max_element>Doc/sprout/range/algorithm/max_element]] | 範囲内の最大要素へのイテレータを取得する &color(gray){(function template)}; |
+| [[minmax_element>Doc/sprout/range/algorithm/minmax_element]] | 範囲内の最小要素と最大要素へのイテレータを取得する &color(gray){(function template)}; |
+
+---辞書式比較~
+|LEFT:200|LEFT:1800|c
+| [[lexicographical_compare>Doc/sprout/range/algorithm/lexicographical_compare]] | 2 つの範囲を辞書式順序で比較する &color(gray){(function template)}; |
+| [[tristate_lexicographical_compare>Doc/sprout/range/algorithm/tristate_lexicographical_compare]] | 2 つの範囲を辞書式順序で比較し、前か後か等しいかを返す &color(gray){(function template)}; |
+
+---順列~
+|LEFT:200|LEFT:1800|c
+| [[is_permutation>Doc/sprout/range/algorithm/is_permutation]] | 範囲が順列かを判定する &color(gray){(function template)}; |
+
+--要素のスワップ~
+|LEFT:200|LEFT:1800|c
+| [[swap_element_copy>Doc/sprout/range/algorithm/swap_element_copy]] | 指定した 2 つの要素を入れ替え、その結果を出力の範囲へコピーする &color(gray){(function template)}; |
+

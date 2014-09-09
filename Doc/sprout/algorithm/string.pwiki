@@ -1,0 +1,25 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+文字列用アルゴリズムを提供する。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/algorithm/string.hpp>
+}}
+
+-参照~
+--[[''Boost.StringAlgo'':http://www.boost.org/doc/html/string_algo.html]]~
+
+
+
+*フリー関数 [#free-functions-]
+
+--アルゴリズム~
+|LEFT:200|LEFT:1800|c
+| [[join>Doc/sprout/algorithm/join]] | 文字列を要素とするコンテナの内容を、セパレータで結合する &color(gray){(function template)}; |
+

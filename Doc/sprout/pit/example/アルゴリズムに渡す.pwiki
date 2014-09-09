@@ -1,0 +1,60 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+pit オブジェクトをアルゴリズムに渡して、指定したコンテナの返値を得る。~
+
+
+
+*pit を使わない場合
+
+#geshi(cpp){{
+ #include <sprout/array.hpp>
+ #include <sprout/algorithm.hpp>
+ 
+ constexpr auto src = sprout::array<int, 5>{ { 0, 1, 0, 1, 0 } };
+ constexpr auto dst = sprout::replace_copy(
+   src.begin(), src.end(),
+   sprout::array<int, 5>{},
+   0, -1
+   );
+ 
+ #include <type_traits>
+ static_assert(std::is_same<decltype(dst), sprout::array<int, 5> const>::value, "dst is sprout::array");
+}}
+
+Sprout のアルゴリズムは、STL のように OutputIterator に結果を出力するのではなく、~
+OutputIterator の代わりに出力先となるコンテナを渡し、そのコンテナを元に結果を返す。~
+（constexpr であるから、渡したコンテナそのものは変更されない）~
+上記の例では replace_copy は、{ -1, 1, -1, 1, -1 } なる array を返す。~
+しかし、これでは ''array のテンポラリが生成されるため非効率''である。~
+
+
+
+*pit を使った場合
+
+#geshi(cpp){{
+ #include <sprout/pit.hpp>
+ #include <sprout/array.hpp>
+ #include <sprout/algorithm.hpp>
+ 
+ constexpr auto src = sprout::array<int, 5>{ { 0, 1, 0, 1, 0 } };
+ constexpr auto dst = sprout::replace_copy(
+   src.begin(), src.end(),
+   sprout::pit<sprout::array<int, 5> >(),
+   0, -1
+   );
+ 
+ #include <type_traits>
+ static_assert(std::is_same<decltype(dst), sprout::array<int, 5> const>::value, "dst is sprout::array");
+}}
+
+''sprout::pit'' を使って書き直したのが上記である。~
+''pit<Container>'' は、それ自体は空値の詰められた無意味なコンテナのように振る舞うが、~
+''アルゴリズムに渡された場合、結果として Container を返す''という性質を持つ。~
+そのため上記は最初の例と同じく、{ -1, 1, -1, 1, -1 } なる array を返す。~
+''Container のテンポラリは生成されない''ため、より効率的である。~
+

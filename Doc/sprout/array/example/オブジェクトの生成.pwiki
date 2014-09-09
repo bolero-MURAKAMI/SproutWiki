@@ -1,0 +1,63 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+array オブジェクトの生成方法。~
+
+
+
+*リスト初期化
+
+#geshi(cpp){{
+ #include <sprout/array.hpp>
+ 
+ constexpr auto a = sprout::array<int, 5>{ { 1, 2, 3, 4, 5 } };
+}}
+
+array は、std::array と同様に[[''アグリゲート''>http://en.wikipedia.org/wiki/C%2B%2B_classes#Aggregate_classes]]であることが保証される。~
+そのため、リスト初期化することができる。~
+ブレース（中括弧）は二重でなければならない。~
+
+
+
+*生配列から生成
+
+#geshi(cpp){{
+ #include <sprout/array.hpp>
+ 
+ constexpr int arr[5] = { 1, 2, 3, 4, 5 };
+ constexpr auto a = sprout::to_array(arr);
+}}
+
+生配列から array オブジェクトを生成するには、''to_array'' フリー関数を使う。~
+要素型および要素数は元の生配列と同様になる。~
+上記の例では array<int, 5> になる。~
+
+
+
+*引数列から生成
+
+#geshi(cpp){{
+ #include <sprout/array.hpp>
+ 
+ constexpr auto a = sprout::make_array<int>(1, 2, 3, 4, 5);
+}}
+
+引数列から array オブジェクトを生成するには、''make_array'' フリー関数を使う。~
+要素型はテンプレート引数に明示的に指定する必要がある。~
+要素数は元の引数の数と同様になる。~
+上記の例では array<int, 5> になる。~
+
+#geshi(cpp){{
+ #include <sprout/array.hpp>
+ 
+ constexpr auto a = sprout::make_common_array(1, 2, 3, 4, 5);
+}}
+
+要素型を明示しない場合には、''make_common_array'' フリー関数を使う。~
+要素型はすべての引数型に対する common_type になる。~
+上記の例では array<int, 5> になる。~
+

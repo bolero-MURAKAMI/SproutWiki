@@ -1,0 +1,55 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+IndexTuple イディオムのための機能を提供する。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/index_tuple.hpp>
+}}
+
+-宣言~
+#geshi(cpp){{
+ namespace sprout {
+   template<sprout::index_t... Indexes>
+   struct index_tuple;
+ }
+}}
+
+
+
+*Example [#examples-]
+
+-基本的な用法~
+--[[コンテナを走査する>Doc/sprout/index_tuple/example/コンテナを走査する]] - IndexTuple イディオムによってコンテナを走査する &color(red,white){ ← new!};~
+
+
+
+*メンバ型・定数 [#member-types-]
+
+--型定義~
+|LEFT:200|LEFT:1800|c
+| [[type>Doc/sprout/index_tuple/-type]] | index_tuple 自身と同じ型 |
+
+
+
+*型・定数 [#types-]
+
+--型定義~
+|LEFT:200|LEFT:1800|c
+| [[index_t>Doc/sprout/index_tuple/index_t]] | 符号付整数のインデックス型 |
+
+
+
+*メタ関数 [#meta-functions-]
+
+--インデックスタプル作成~
+|LEFT:200|LEFT:1800|c
+| [[index_range>Doc/sprout/index_tuple/index_range]] | 始端から終端までのインデックスを順に走査するインデックスタプルを作成する &color(gray){(class template)}; |
+| [[index_n>Doc/sprout/index_tuple/index_n]] | 同じインデックスを N 回走査するインデックスタプルを作成する &color(gray){(class template)}; |
+| [[pack_indexes>Doc/sprout/index_tuple/pack_indexes]] | パラメータパックすべてを走査するインデックスタプルを作成する &color(gray){(class template)}; |
+

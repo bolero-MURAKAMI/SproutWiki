@@ -1,0 +1,139 @@
+*目次 [#contents-]
+#contents
+
+
+
+*About [#about-]
+
+◇ C++11 ''constexpr'' based Containers, Algorithms, Random numbers, Parsing, Ray tracing, Synthesizer, and others.~
+◇ このライブラリは、C++11 の ''constexpr'' に対応したコンテナ、アルゴリズム、乱数、構文解析、レイトレーシング、シンセサイザー、その他の機能を提供する。~
+◇ ''中３女子''がつくっています。~
+
+-プロジェクトページ~
+--[[Github:https://github.com/bolero-MURAKAMI/Sprout]] (メインはこっちです)~
+--[[SourceForge:http://sourceforge.jp/users/bolero-murakami/]]~
+
+-Bolero's website~
+--[[http://www.boleros.x0.com/:http://www.boleros.x0.com/]]~
+
+
+
+*導入 [#introduction-]
+
+--[[インストール>Doc/導入/インストール]] - Sprout C++ Library をあなたのコードから使えるよう導入する~
+--[[ユーザコンフィグ>Doc/導入/ユーザコンフィグ]] - Sprout の動作をカスタマイズする~
+
+
+
+*ライブラリ [#libraries-]
+
+-''コンテナとデータ構造 (Containers and Data structures)''~
+--[[array>Doc/sprout/array]] - std::array 互換の固定長コンテナ &color(red,white){ ← new!};~
+--[[string>Doc/sprout/string]] - 固定長バッファの文字列クラス &color(red,white){ ← new!};~
+--[[tuple>Doc/sprout/tuple]] - std::tuple 互換のタプル &color(red,white){ ← new!};~
+--[[optional>Doc/sprout/optional]] - 無効値の表現~
+--[[variant>Doc/sprout/variant]] - バリアント~
+--[[bitset>Doc/sprout/bitset]] - std::bitset 互換のビットセット~
+
+-''アルゴリズム (Algorithms)''~
+--[[algorithm>Doc/sprout/algorithm]] - STL 互換のアルゴリズム &color(red,white){ ← new!};~
+--[[algorithm/string>Doc/sprout/algorithm/string]] - 文字列用アルゴリズム &color(red,white){ ← new!};~
+--[[numeric>Doc/sprout/numeric]] - STL 互換の数値シーケンスアルゴリズム &color(red,white){ ← new!};~
+--[[range/algorithm>Doc/sprout/range/algorithm]] - Rangeベースのアルゴリズム &color(red,white){ ← new!};~
+--[[range/numeric>Doc/sprout/range/numeric]] - Rangeベースの数値シーケンスアルゴリズム &color(red,white){ ← new!};~
+--[[range/adaptor>Doc/sprout/range/adaptor]] - Rangeアダプタ~
+--[[numeric/dft>Doc/sprout/numeric/dft]] - 離散フーリエ変換~
+--[[range/numeric/dft>Doc/sprout/range/numeric/dft]] - Rangeベースの離散フーリエ変換~
+
+-''コンテナサポート (Container supports)''~
+--[[sub_array>Doc/sprout/sub_array]] - コンテナから一部の範囲を切り出す部分コンテナ &color(red,white){ ← new!};~
+--[[pit>Doc/sprout/pit]] - 処理結果のコンテナを返す関数に与えるダミーコンテナ &color(red,white){ ← new!};~
+--[[operation>Doc/sprout/operation]] - コンテナを変更する操作~
+--[[container>Doc/sprout/container]] - コンテナ特性を定義するトレイトと関数~
+
+-''関数オブジェクト (Function Objects)''~
+--[[functional>Doc/sprout/functional]] - STL 互換の関数オブジェクトとハッシュ関数~
+
+-''イテレータ (Iterators)''~
+--[[iterator>Doc/sprout/iterator]] - STL 互換のイテレータと、いくつかの定義済みイテレータ~
+
+-''数学 (Mathematics)''~
+--[[math/functions>Doc/sprout/math/functions]] - 数学関数~
+--[[random>Doc/sprout/random]] - 乱数~
+--[[complex>Doc/sprout/complex]] - 複素数~
+--[[rational>Doc/sprout/rational]] - 有理数~
+
+-''テンプレートメタプログラミング (Template Metaprogramming)''~
+--[[index_tuple>Doc/sprout/index_tuple]] - IndexTuple イディオム &color(red,white){ ← new!};~
+--[[type_traits>Doc/sprout/type_traits]] - 型特性~
+--[[type>Doc/sprout/type]] - 型リスト~
+
+-''プリプロセッサメタプログラミング (Preprocessor Metaprogramming)''~
+--[[preprocessor>Doc/sprout/preprocessor]] - プリプロセッサメタプログラミングツール~
+
+-''ドメイン固有 (Domain specific)''~
+--[[uuid>Doc/sprout/uuid]] - UUID~
+--[[checksum/sha1>Doc/sprout/checksum/sha1]] - SHA-1~
+--[[sprout/checksum>Doc/sprout/checksum]] - チェックサム (SHA-1, MD5, etc)~
+
+-''構文解析 (Parsing)''~
+--[[weed>Doc/sprout/weed]] - Boost.Spirit.Qi ライクなコンパイル時パーサコンビネータ~
+
+-''レイトレーシング (Ray tracing)''~
+--[[darkroom>Doc/sprout/darkroom]] - コンパイル時レイトレーサ~
+
+-''シンセサイザー (Synthesizer)''~
+--[[compost>Doc/sprout/compost]] - コンパイル時シンセサイザー~
+
+-''その他 (Miscellaneous)''~
+--[[utility>Doc/sprout/utility]] - <utility> 互換の機能と、雑多なユーティリティ~
+--[[bit/operation>Doc/sprout/bit/operation]] - ビット操作~
+
+-''C互換 (C-compatible)''~
+--[[cstdlib>Doc/sprout/cstdlib]] - <cstdlib> 互換の機能~
+--[[cstring>Doc/sprout/cstring]] - <cstring> 互換の機能~
+--[[cwchar>Doc/sprout/cwchar]] - <cwchar> 互換の機能~
+--[[cctype>Doc/sprout/cctype]] - <cctype> 互換の機能~
+--[[cinttypes>Doc/sprout/cinttypes]] - <cinttypes> 互換の機能~
+
+--------------------------------------------------------------------------------
+
+-''その他のページ''~
+--[[Example>Doc/Example]] - ライブラリ毎の Example の一覧~
+
+
+
+*サポートするコンパイラ [#supported_compilers-]
+
+-Linux:~
+--GCC, C++11 mode: 4.7.0, 4.7.1, 4.7.2, 4.7.3, 4.8.0, 4.8.1~
+--Clang, C++11 mode: 3.2, 3.3~
+
+
+
+*資料 [#materials-]
+
+-スライド~
+--[[中３女子でもわかる constexpr:http://www.slideshare.net/GenyaMurakami/constexpr-10458089]] (SlideShare)~
+--[[中３女子が狂える本当に気持ちのいい constexpr:http://www.slideshare.net/GenyaMurakami/constexpr-11509325]] (SlideShare)~
+--[[Constexpr 中３女子テクニック:http://www.slideshare.net/GenyaMurakami/constexpr-23355469]] (SlideShare)~
+
+
+
+*要望等 [#requests-]
+
+--コメントスパムが酷いのでコメント欄はいったん閉じます。~
+--ドキュメントやライブラリ機能に対する要望や報告は、Github の Issues または管理人のメールまでお願いします。~
+
+
+
+*管理人 [#Author-]
+
+Bolero MURAKAMI~
+--Website: http://www.boleros.x0.com/~
+--Twitter: https://twitter.com/bolero_murakami~
+--Facebook: http://www.facebook.com/genya.murakami~
+--Blog: http://d.hatena.ne.jp/boleros/~
+--Github: https://github.com/bolero-MURAKAMI~
+--SlideShare: http://www.slideshare.net/GenyaMurakami~
+--Mail: contact-lib@boleros.x0.com~

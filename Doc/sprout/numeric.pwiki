@@ -1,0 +1,46 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+STL 互換の数値シーケンスアルゴリズムを提供する。~
+ただし、いくつかのアルゴリズムは、STL とは異なるインタフェースを持つ。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/numeric.hpp>
+}}
+
+-参照~
+--[[''n3337.pdf'':http://www.boleros.x0.com/data/n3337.pdf]] (§ 26.7 Generalized numeric operations)~
+
+-注記~
+--''STL で出力イテレータを取るアルゴリズム''~
+出力イテレータに結果を出力するのではなく、出力先コンテナを受け取って結果のコンテナを返す。~
+#geshi(cpp){{
+ template<typename InputIterator, typename Result>
+ inline SPROUT_CONSTEXPR typename sprout::fixed::result_of::algorithm<Result>::type
+ partial_sum(InputIterator first, InputIterator last, Result const& result);
+}}
+
+--''STL で 2 つの入出力イテレータを取るアルゴリズム''~
+入出力イテレータの参照先を変更するのではなく、コンテナを受け取って結果のコンテナを返す。~
+#geshi(cpp){{
+ template<typename Container, typename T>
+ inline SPROUT_CONSTEXPR typename sprout::fixed::result_of::algorithm<Container>::type
+ iota(Container const& cont, T value);
+}}
+
+
+
+*フリー関数 [#free-functions-]
+
+|LEFT:200|LEFT:1800|c
+| [[accumulate>Doc/sprout/numeric/accumulate]] | 1 つのシーケンスの任意の範囲の値を足し合わせる &color(gray){(function template)}; |
+| [[inner_product>Doc/sprout/numeric/inner_product]] | 2 つのシーケンスの任意の範囲の値の内積を計算する &color(gray){(function template)}; |
+| [[partial_sum>Doc/sprout/numeric/partial_sum]] | 1 つのシーケンスの任意の範囲の値の部分和を計算する &color(gray){(function template)}; |
+| [[adjacent_difference>Doc/sprout/numeric/adjacent_difference]] | 1 つのシーケンスの任意の範囲の隣接する値間の差を計算する &color(gray){(function template)}; |
+| [[iota>Doc/sprout/numeric/iota]] | 1 つのシーケンスの任意の範囲に指定した初期値から順次インクリメントされた値を代入する &color(gray){(function template)}; |
+

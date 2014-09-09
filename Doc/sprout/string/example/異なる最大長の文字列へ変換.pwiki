@@ -1,0 +1,39 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+異なる最大長の文字列へ変換する方法。~
+
+
+
+*より大きな最大長の文字列への変換
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::to_string("body-head");
+ constexpr sprout::string<100> s2 = s;
+}}
+
+より大きな最大長の文字列への変換は、''operator basic_string'' によって暗黙の変換が行われる。~
+文字列の内容は変わらず保持される。~
+
+
+
+*より小さな最大長の文字列への変換
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::to_string("body-head");
+ constexpr sprout::string<4> s2 = sprout::shrink(s);
+}}
+
+より小さな最大長の文字列への変換は、暗黙の変換は行われない。~
+暗黙の変換を有効にするには ''sprout::shrink'' フリー関数を使う。~
+文字列の内容は先頭から保持され、はみ出した部分は切り捨てられる。~
+上記の例では "body" のみが残る。~
+

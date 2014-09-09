@@ -1,0 +1,38 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+Rangeベースの数値シーケンスアルゴリズムを提供する。~
+変更のアルゴリズムのインタフェースは、[[Sprout.Numeric>Doc/sprout/numeric]] に準ずる。~
+なお、[[Sprout.Numeric>Doc/sprout/numeric]] で入出力イテレータでなくコンテナを取る仕様になっているものは、Range 版は存在しない。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/range/numeric.hpp>
+}}
+
+-参照~
+--[[''n3337.pdf'':http://www.boleros.x0.com/data/n3337.pdf]] (§ 26.7 Generalized numeric operations)~
+
+-注記~
+--''2 つの入力イテレータを取るアルゴリズム''~
+入力イテレータの代わりに、入力の Range を受け取る。~
+#geshi(cpp){{
+ template<typename Input, typename Result>
+ inline SPROUT_CONSTEXPR typename sprout::fixed::result_of::algorithm<Result>::type
+ partial_sum(Input const& input, Result const& result);
+}}
+
+
+
+*フリー関数 [#free-functions-]
+
+|LEFT:200|LEFT:1800|c
+| [[accumulate>Doc/sprout/range/numeric/accumulate]] | 1 つのシーケンスの任意の範囲の値を足し合わせる &color(gray){(function template)}; |
+| [[inner_product>Doc/sprout/range/numeric/inner_product]] | 2 つのシーケンスの任意の範囲の値の内積を計算する &color(gray){(function template)}; |
+| [[partial_sum>Doc/sprout/range/numeric/partial_sum]] | 1 つのシーケンスの任意の範囲の値の部分和を計算する &color(gray){(function template)}; |
+| [[adjacent_difference>Doc/sprout/range/numeric/adjacent_difference]] | 1 つのシーケンスの任意の範囲の隣接する値間の差を計算する &color(gray){(function template)}; |
+

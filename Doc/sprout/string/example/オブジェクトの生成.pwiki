@@ -1,0 +1,91 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+string オブジェクトの生成方法。~
+
+
+
+*文字列リテラルから生成
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::to_string("mami-san\0head");
+}}
+
+文字列リテラルから string オブジェクトを生成するには、''to_string'' フリー関数を使う。~
+要素型は元の文字列リテラルと同様になる。~
+要素数は元の文字列リテラルから 1 を引いた数（つまり最後のナル文字を除く）になる。~
+文字列長は先頭から最初のナル文字までの長さになる。~
+上記の例では basic_string<char, 13> になる。~
+文字列長は 8 になる（つまり "head" は切り捨てられる）。~
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr sprout::string<13> s = "mami-san\0head"; /* error! */
+}}
+
+なお、上記のように、文字列リテラルやC文字列からの暗黙の変換はサポートしていない。~
+
+
+
+*C文字列から生成
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr char const* str = "homuhomu";
+ constexpr auto s = sprout::string_from_c_str<13>(str);
+}}
+
+C文字列から string オブジェクトを生成するには、''string_from_c_str'' フリー関数を使う。~
+要素型は元のC文字列と同様になる。~
+要素数は指定されたテンプレート引数と同じになる。~
+文字列長は先頭から最初のナル文字までの長さ、または要素数と同じになる。~
+上記の例では basic_string<char, 13> になる。~
+文字列長は 8 になる。~
+※ もしC文字列の長さが要素数を越えていた場合、out_of_range 例外が投げられる。
+
+
+
+*引数列から生成
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::make_string('h', 'o', 'm', 'u', 'h', 'o', 'm', 'u');
+}}
+
+引数列から string オブジェクトを生成するには、''make_string'' フリー関数を使う。~
+要素型は最初の引数型と同じになる。~
+要素数は引数の数と同様になる。~
+文字列長は先頭から最初のナル文字までの長さ、または要素数と同じになる。~
+上記の例では basic_string<char, 8> になる。~
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::make_string_as<wchar_t>('h', 'o', 'm', 'u', 'h', 'o', 'm', 'u');
+}}
+
+要素型を明示する場合には、''make_string_as'' フリー関数を使う。~
+要素型は指定されたテンプレート引数になる。~
+上記の例では basic_string<wchar_t, 8> になる。~
+
+
+
+*コンストラクタ
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::string<16>("homuhomu");
+}}
+
+string クラスは、std::string ライクな各種コンストラクタを持っている。
+

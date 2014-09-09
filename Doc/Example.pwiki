@@ -1,0 +1,33 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+ライブラリ毎の Example の一覧。~
+
+
+
+*Example [#examples-]
+
+--[[''array''>Doc/sprout/array]]
+---[[オブジェクトの生成>Doc/sprout/array/example/オブジェクトの生成]] - array オブジェクトの生成方法~
+
+--[[''string''>Doc/sprout/string]]
+---[[オブジェクトの生成>Doc/sprout/string/example/オブジェクトの生成]] - string オブジェクトの生成方法~
+---[[文字列の連結>Doc/sprout/string/example/文字列の連結]] - 文字列の連結方法と挙動~
+---[[異なる最大長の文字列へ変換>Doc/sprout/string/example/異なる最大長の文字列へ変換]] - 異なる最大長の文字列へ変換する方法~
+
+--[[''tuple''>Doc/sprout/tuple]]
+---[[ファンクタを呼ぶ>Doc/sprout/tuple/example/ファンクタを呼ぶ]] - タプルの各要素を引数としてファンクタを呼ぶ~
+
+--[[''sub_array''>Doc/sprout/sub_array]]
+---[[アルゴリズムに渡す>Doc/sprout/sub_array/example/アルゴリズムに渡す]] - sub_array オブジェクトをアルゴリズムに渡して、切り出した部分だけ処理された結果を得る~
+
+--[[''pit''>Doc/sprout/pit]]
+---[[アルゴリズムに渡す>Doc/sprout/pit/example/アルゴリズムに渡す]] - pit オブジェクトをアルゴリズムに渡して、指定したコンテナの返値を得る~
+
+--[[''index_tuple''>Doc/sprout/index_tuple]]
+---[[コンテナを走査する>Doc/sprout/index_tuple/example/コンテナを走査する]] - IndexTuple イディオムによってコンテナを走査する
+

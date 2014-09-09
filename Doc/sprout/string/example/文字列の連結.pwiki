@@ -1,0 +1,25 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+文字列の連結方法と挙動。~
+
+
+
+*文字列連結
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ 
+ constexpr auto s = sprout::to_string("mami-san:") + "head";
+}}
+
+文字列同士の連結は ''operator+'' によって行われる。~
+一方が string であれば、もう一方の引数に string オブジェクト/文字列リテラル/単一文字のいずれかを取ることができる。~
+連結結果の文字列のバッファ長は、例えば~
+ string<9> + string<4> -> string<13>
+のように自動的に拡張されるため、見た目上、可変長文字列と同じように扱うことができる。~
+

@@ -1,0 +1,34 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+Sprout C++ Library をあなたのコードから使えるよう導入する。~
+
+
+
+*手順 [#process-]
++ダウンロードと解凍~
+【 [[''Github のプロジェクトページ'':https://github.com/bolero-MURAKAMI/Sprout]] 】を開き、【Download ZIP】ボタンをクリックしてアーカイブをダウンロードし、適当なディレクトリに解凍する。~
+もしくは git clone する。~
+~
++パスを通す~
+ディレクトリ /path/to/sprout にパスを通す。~
+-GCC, Clang の場合~
+環境変数 CPLUS_INCLUDE_PATH に設定する。~
+例:~
+ $ export CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH}:path/to/sprout"
+あるいはコンパイラの -I オプションで直接指定する。~
+例:~
+ $ g++ -I"path/to/sprout" ...
+~
++インクルード~
+あなたのコードから Sprout のヘッダを include する。~
+#geshi(cpp){{
+ // example: コンパイル時レイトレ―シングライブラリ Sprout.Darkroom を使う
+ #include <sprout/darkroom.hpp>
+}}
+このライブラリはヘッダオンリーで使えるので、ビルド等は必要ない。~
+

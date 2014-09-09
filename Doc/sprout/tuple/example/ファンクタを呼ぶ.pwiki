@@ -1,0 +1,54 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+タプルの各要素を引数としてファンクタを呼ぶ。~
+
+
+
+*fused
+
+#geshi(cpp){{
+ #include <sprout/functional.hpp>
+ #include <sprout/tuple.hpp>
+ 
+ constexpr auto f = sprout::make_fused(sprout::plus<int>());
+ constexpr auto r = f(sprout::make_tuple(1, 2));
+ 
+ static_assert(f == 3, "");
+}}
+
+''sprout::make_fused'' フリー関数は、引数にファンクタを取って、''fused'' 関数オブジェクトを作成する。~
+作成された関数オブジェクトにタプルを渡すと、タプルの各要素を引数としてファンクタが呼ばれる。~
+上記の例では、sprout::plus<int>()(1, 2) と同じ意味になる。
+
+
+*Sprout.Weed のアトリビュート変換に fused を使う
+
+#geshi(cpp){{
+ #include <sprout/string.hpp>
+ #include <sprout/weed.hpp>
+ #include <sprout/functional.hpp>
+ #include <sprout/tuple.hpp>
+ 
+ namespace w = sprout::weed;
+ 
+ constexpr auto p = (w::int_ >> +w::space_ >> w::int_)
+ 	->*sprout::make_fused(sprout::plus_)
+ 	;
+ constexpr auto s = sprout::to_string("100 200");
+ constexpr auto r = w::parse(s.begin(), s.end(), p).attr();
+ 
+ static_assert(f == 300, "");
+}}
+
+p は、「空白を挟んだ二つの整数」に対するパーサである。~
+この場合のアトリビュートは array<intmax_t, 2> になるが、これはタプルとみなすことができる。~
+Sprout.Weed の ''operator->*'' は、左辺にパーサ、右辺に「アトリビュートを受け取って別のアトリビュートに変換する」ファンクタを取る、アトリビュート変換演算子である。~
+ここでは、アトリビュートのタプルを引数に分解し、それを加算した値を結果のアトリビュートとしている。~
+~
+なお ''sprout::plus_'' は、関数オブジェクト plus の多相バージョンである。~
+

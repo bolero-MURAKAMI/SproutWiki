@@ -1,0 +1,130 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+コンテナから一部の範囲を切り出す部分コンテナ。~
+
+-ヘッダ~
+#geshi(cpp){{
+ #include <sprout/sub_array.hpp>
+}}
+
+-宣言~
+#geshi(cpp){{
+ namespace sprout {
+   template<typename Container>
+   class sub_array;
+ }
+}}
+
+
+
+*Example [#examples-]
+
+-基本的な用法~
+--[[アルゴリズムに渡す>Doc/sprout/sub_array/example/アルゴリズムに渡す]] - sub_array オブジェクトをアルゴリズムに渡して、切り出した部分だけ処理された結果を得る &color(red,white){ ← new!};~
+
+
+
+*メンバ関数 [#member-functions-]
+
+--イテレータ~
+|LEFT:200|LEFT:1800|c
+| [[begin>Doc/sprout/sub_array/-begin]] | 先頭要素を指すイテレータを返す |
+| [[end>Doc/sprout/sub_array/-end]] | 末尾の1つ次の要素を指すイテレータを返す |
+| [[cbegin>Doc/sprout/sub_array/-cbegin]] | 先頭要素を指す読み取り専用イテレータを返す |
+| [[cend>Doc/sprout/sub_array/-cend]] | 末尾の次の要素を指す読み取り専用イテレータを返す |
+
+--領域~
+|LEFT:200|LEFT:1800|c
+| [[empty>Doc/sprout/sub_array/-empty]] | コンテナが空かどうかを返す |
+| [[size>Doc/sprout/sub_array/-size]] | コンテナの要素の個数を返す |
+| [[max_size>Doc/sprout/sub_array/max_size]] | コンテナに格納できる要素数の最大値を返す |
+
+--要素アクセス~
+|LEFT:200|LEFT:1800|c
+| [[at>Doc/sprout/sub_array/at]] | 境界チェック付きの要素アクセス |
+| [[operator[]>Doc/sprout/sub_array/-operator-subscript]] | 境界チェック無しの要素アクセス |
+| [[front>Doc/sprout/sub_array/-front]] | 先頭要素への参照を返す |
+| [[back>Doc/sprout/sub_array/-back]] | 末尾要素への参照を返す |
+| [[data>Doc/sprout/sub_array/-data]] | コンテナ内部に保持されている生の配列へ直接アクセスする |
+
+--変更~
+|LEFT:200|LEFT:1800|c
+| [[fill>Doc/sprout/sub_array/-fill]] | コンテナを特定の要素で埋める |
+| [[swap>Doc/sprout/sub_array/-swap]] | 別の sub_array とコンテナの中身を交換する |
+
+--その他~
+|LEFT:200|LEFT:1800|c
+| [[operator=>Doc/sprout/sub_array/-operator-assign]] | 別の sub_array をコンテナに代入する |
+| [[c_array>Doc/sprout/sub_array/-c_array]] | コンテナ内部に保持されている生の配列へ直接アクセスする |
+| [[assign>Doc/sprout/sub_array/-assign]] | コンテナを特定の要素で埋める |
+
+
+
+*フリー関数 [#free-functions-]
+
+--生成~
+|LEFT:200|LEFT:1800|c
+| [[sub>Doc/sprout/sub_array/sub]] | コンテナを参照する部分コンテナを生成する &color(gray){(function template)}; |
+| [[sub_copy>Doc/sprout/sub_array/sub_copy]] | コピーされたコンテナを保持する部分コンテナを生成する &color(gray){(function template)}; |
+
+--スワップ~
+|LEFT:200|LEFT:1800|c
+| [[swap>Doc/sprout/sub_array/swap]] | 2つの sub_array オブジェクトを入れ替える &color(gray){(function template)}; |
+
+--比較~
+|LEFT:200|LEFT:1800|c
+| [[operator==>Doc/sprout/sub_array/operator-equal_to]] | 等値比較 &color(gray){(function template)}; |
+| [[operator!=>Doc/sprout/sub_array/operator-not_equal_to]] | 非等値比較 &color(gray){(function template)}; |
+| [[operator＜>Doc/sprout/sub_array/operator-less]] | 左辺が右辺より小さいかの判定を行う &color(gray){(function template)}; |
+| [[operator＜=>Doc/sprout/sub_array/operator-less_equal]] | 左辺が右辺以下かの判定を行う &color(gray){(function template)}; |
+| [[operator＞>Doc/sprout/sub_array/operator-greater]] | 左辺が右辺より大きいかの判定を行う &color(gray){(function template)}; |
+| [[operator＞=>Doc/sprout/sub_array/operator-greater_equal]] | 左辺が右辺以上かの判定を行う &color(gray){(function template)}; |
+
+--タプルサポート~
+|LEFT:200|LEFT:1800|c
+| [[get>Doc/sprout/sub_array/get]] | 要素を取得する &color(gray){(function template)}; |
+
+--ハッシュサポート~
+|LEFT:200|LEFT:1800|c
+| [[hash_value>Doc/sprout/sub_array/hash_value]] | ハッシュを計算する &color(gray){(function template)}; |
+
+
+
+*メンバ型・定数 [#member-types-]
+
+--コンテナ特性型~
+|LEFT:200|LEFT:1800|c
+| [[reference>Doc/sprout/sub_array/-reference]] | 要素の参照型 T& |
+| [[const_reference>Doc/sprout/sub_array/-reference]] | 読取り専用の要素の参照型 T const& |
+| [[iterator>Doc/sprout/sub_array/-reference]] | ランダムアクセスイテレータ |
+| [[const_iterator>Doc/sprout/sub_array/-reference]] | 読取り専用のランダムアクセスイテレータ |
+| [[reverse_iterator>Doc/sprout/sub_array/-reference]] | 逆イテレータ |
+| [[const_reverse_iterator>Doc/sprout/sub_array/-reference]] | 読み取り専用の逆イテレータ |
+| [[size_type>Doc/sprout/sub_array/-reference]] | 符号なし整数型 size_t |
+| [[difference_type>Doc/sprout/sub_array/-reference]] | 符号付き整数型 ptrdiff_t |
+| [[pointer>Doc/sprout/sub_array/-reference]] | 要素のポインタ型 T* |
+| [[const_pointer>Doc/sprout/sub_array/-reference]] | 読取り専用の要素のポインタ型 T const* |
+| [[value_type>Doc/sprout/sub_array/-reference]] | 要素の型 T |
+
+--コンテナサイズ~
+|LEFT:200|LEFT:1800|c
+| [[static_size>Doc/sprout/sub_array/-static_size]] | 固定長コンテナサイズ N |
+
+
+
+*メタ関数 [#meta-functions-]
+
+--型特性~
+|LEFT:200|LEFT:1800|c
+| [[is_sub_array>Doc/sprout/sub_array/is_sub_array]] | 型が sub_array であるか &color(gray){(class template)}; |
+
+--タプルサポート~
+|LEFT:200|LEFT:1800|c
+| [[tuple_size>Doc/sprout/sub_array/tuple_size]] | 要素数取得 &color(gray){(class template)}; |
+| [[tuple_element>Doc/sprout/sub_array/tuple_element]] | 要素型取得 &color(gray){(class template)}; |
+

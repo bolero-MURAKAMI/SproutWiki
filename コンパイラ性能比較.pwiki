@@ -1,0 +1,32 @@
+
+** 特徴
+*** GCC
+- バージョン: 4.7, 4.8, 4.9~
+- constexpr の準拠：ほとんど~
+- constexpr の処理：速度速い・メモリ食う~
+-- 巨大な配列（数万要素）を作成するようなプログラムはコンパイルエラーになる~
+- constexpr の拡張：いくつかある
+*** Clang
+- バージョン: 3.2, 3.3, 3.4~
+- constexpr の準拠：ほとんど~
+- constexpr の処理：速度普通・メモリ普通~
+- constexpr の拡張：確認していない~
+*** VC++
+- VC++ は滅ぶべきであると考える次第である~
+
+** 独自拡張
+|LEFT:1800|CENTER:200|CENTER:200|c
+|~ | GCC | Clang |h
+| constexpr ビルトイン数学関数 | 4.7~ | 無 |
+| constexpr ビルトインビット処理関数 | 4.7~ | 無 |
+| constexpr 関数のメモ化（処理は高速になるがメモリを大量消費する） | 4.7~ | 無 |
+
+** バグ
+|LEFT:1800|CENTER:100|CENTER:100|LEFT:900|c
+|~ | GCC | Clang | ワークアラウンド |h
+| 相互再帰する constexpr 関数テンプレートを実体化すると、テンプレート実体化が無限再帰してコンパイルエラーになる 【[[コード:http://melpon.org/wandbox/permlink/KabKOkFRecUo1eD1]]】 | 無 | 3.2~3.5(trunk) [未fix] | テンプレート実体化の深さをカウントして制限 |
+| メンバ関数ポインタからの関数呼び出しが定数式に扱われない 【[[コード:http://melpon.org/wandbox/permlink/USKSOtS7czVTrCNR]]】 | 4.7~4.10(trunk) [未fix] | 無 | なし |
+| 関数ポインタの typedef 名で宣言された変数からの関数呼び出しが定数式に扱われない 【[[コード:http://melpon.org/wandbox/permlink/Ug37mLpGwsMEHHlZ]]】 | 4.7~4.10(trunk) [未fix] | 無 | typedef 名を使わない |
+| クラスの非公開メンバを、公開メンバ関数のインタフェースの decltype 内から参照できない 【[[コード:http://melpon.org/wandbox/permlink/e1GSHBGTyiMlQwNk]]】 | 4.7 [fix:4.8.0以降] | 無 | 公開メンバを使う |
+| 非トリビアルなムーヴコンストラクタを持つクラス（基底クラス、非 static データメンバを含む）を constexpr 関数内で二段以上値渡しできない 【[[Bug 57901:http://gcc.gnu.org/bugzilla/show_bug.cgi?id=57901]]】 | 4.8.0~4.8.1 [fix:4.8.2以降] | 無 | 非トリビアルなムーヴコンストラクタを定義しない |
+

@@ -1,0 +1,44 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+
+IndexTuple イディオムによってコンテナを走査する方法。~
+
+
+
+*reverse アルゴリズムの実装
+
+#geshi(cpp){{
+ #include <sprout/index_tuple.hpp>
+ #include <sprout/array.hpp>
+ 
+ template<typename T, std::size_t N, sprout::index_t... Indexes>
+ constexpr sprout::array<T, N>
+ reverse_array_impl(sprout::array<T, N> const& arr, sprout::index_tuple<Indexes...>) {
+   return sprout::array<T, N>{ { arr[N - 1 - Indexes]... } };
+ }
+ 
+ template<typename T, std::size_t N>
+ constexpr sprout::array<T, N>
+ reverse_array(sprout::array<T, N> const& arr) {
+   return reverse_array_impl(arr, sprout::index_range<0, N>::make());
+ }
+ 
+ constexpr auto src = sprout::array<int, 5>{ { 1, 2, 3, 4, 5 } };
+ constexpr auto dst = reverse_array(src);
+ 
+ #include <sprout/range/algorithm.hpp>
+ static_assert(sprout::range::equal(dst, sprout::array<int, 5>{ { 5, 4, 3, 2, 1 } }));
+}}
+
+''IndexTuple イディオム''は、インデックス列を用いた ''Pack expansion expression'' によって、インデックスアクセス可能な構造を走査するイディオムである。~
+このイディオムによるアルゴリズムの実装は、一般に、再帰による実装より速度の面で非常に効率的。~
+~
+上記の例では、array 用の reverse アルゴリズムを実装している。~
+''sprout::index_range'' クラステンプレートは、[first .. last) なるインデックス列（この場合は [0 .. N) ）を作成するヘルパである。~
+''index_range::make'' static メンバ関数は、index_tuple のオブジェクトを返す。~
+index_tuple を受け取った先で Indexes テンプレートパラメータパックを用いてパック展開式を実行している。~
+
